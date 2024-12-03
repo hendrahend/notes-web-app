@@ -28,34 +28,34 @@ const NoteCard = ({ note, onDelete, onEdit, bgColor }) => {
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.99 }}
     >
-      <p className="text-gray-700 text-sm font-medium">
+      <p className="text-gray-700 text-sm font-medium break-words">
         {isExpanded ? note.text : truncatedText}
       </p>
       {note.text.length > 100 && (
         <button
           onClick={toggleText}
-          className="text-base font-semibold text-gray-900 hover:text-gray-700 mt-2"
+          className="text-[15px] font-semibold text-gray-900 hover:text-gray-700 mt-2"
         >
           {isExpanded ? "Read Less" : "Read More"}
         </button>
       )}
 
       <div className="flex flex-row justify-between items-center pt-2">
-      <div className="text-xs text-gray-500">
+      <div className="text-xs text-gray-600 text-opacity-90">
         <p>Created: {createdAt}</p>
         <p>Updated: {updatedAt}</p>
       </div>
       <div className="flex gap-1">
 
         <button
-          className="text-gray-600 hover:text-blue-700"
+          className="text-gray-700 hover:text-blue-600"
           onClick={() => onEdit(note)}
           >
           <FaEdit size={20} />
         </button>
 
         <button
-          className="text-gray-600 hover:text-red-700"
+          className="text-gray-700 hover:text-red-600"
           onClick={() => onDelete(note._id)}
           >
           <FaTrashAlt size={20} />

@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 body {
-    font-family: 'Inter', sans-serif;
-  }
-  
+  font-family: 'Inter', sans-serif;
+}
+
+.break-words {
+  word-wrap: break-word;
+  word-break: break-word;
+}

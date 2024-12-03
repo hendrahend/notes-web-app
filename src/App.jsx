@@ -40,6 +40,7 @@ const App = () => {
   const [input, setInput] = useState("");
   const [editMode, setEditMode] = useState(false);
   const [currentEdit, setCurrentEdit] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     axios
@@ -59,15 +60,16 @@ const App = () => {
 
   const addNote = () => {
     if (input.trim()) {
+      setLoading(true);
       const randomColor = colors[Math.floor(Math.random() * colors.length)];
       axios
       .post("https://notes-app-backend.vercel.app/api/notes", { text: input, bgColor: randomColor })
       .then((response) => {
         const newNote = { ...response.data };
         setNotes((prevNotes) => [...prevNotes, newNote]);
+        setInput("");
       } )
-      .catch((error) => console.error("Error adding note:", error));
-      setInput("");
+      .catch((error) => console.error("Error adding note:", error)).finally(() => setLoading(false));
       // const newNote = { id: uuidv4(), text: input, bgColor: randomColor };
       // setNotes([...notes, newNote]);
       // setInput("");
@@ -91,6 +93,7 @@ const App = () => {
   };
 
   const saveEdit = () => {
+    setLoading(true); 
     axios
       .put(`https://notes-app-backend.vercel.app/api/notes/${currentEdit._id}`, { text: input })
       .then((response) => {
@@ -103,7 +106,7 @@ const App = () => {
         setInput("");
         setCurrentEdit(null);
       })
-      .catch((error) => console.error("Error updating note:", error));
+      .catch((error) => console.error("Error updating note:", error)).finally(() => setLoading(false));
   };
   // const saveEdit = () => {
   //   const updatedNotes = notes.map((note) =>
@@ -169,15 +172,15 @@ const App = () => {
             onChange={(e) => setInput(e.target.value)}
           ></textarea>
           <button
-            className={`mt-2 px-4 py-2 text-sm hover:bg-[#557a71] transition-all ${
-              editMode ? "bg-green-500" : "bg-[#659287]"
-            } text-white rounded-lg shadow`}
-            onClick={editMode ? saveEdit : addNote}
-          >
-            {editMode ? "Save Edit" : "Add Note"}
-          </button>
+          className={`mt-2 px-4 py-2 text-sm hover:bg-[#557a71] transition-all ${
+            editMode ? "bg-emerald-500" : "bg-[#659287]"
+          } text-white rounded-lg shadow`}
+          onClick={editMode ? saveEdit : addNote}
+          disabled={loading}
+        >
+          {loading ? (editMode ? "Saving..." : "Adding...") : editMode ? "Save Edit" : "Add Note"}
+        </button>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {notes.map((note) => (
             <motion.div
