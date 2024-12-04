@@ -23,18 +23,18 @@ const NoteCard = ({ note, onDelete, onEdit, bgColor }) => {
 
   return (
     <motion.div
-    
-      className={`p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow relative ${bgColor}`}
+      className={`ring-2 rounded-lg flex flex-col space-y-2 p-4 break-inside-avoid mb-4 hover:ring-2 ring-black/40 hover:ring-black/70 transform duration-200 hover:shadow-black/50 hover:shadow-md relative ${bgColor}`}
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.99 }}
     >
       <p className="text-gray-700 text-sm font-medium break-words">
         {isExpanded ? note.text : truncatedText}
       </p>
+      
       {note.text.length > 100 && (
         <button
           onClick={toggleText}
-          className="text-[15px] font-semibold text-gray-900 hover:text-gray-700 mt-2"
+          className="text-[15px] flex font-semibold text-gray-900 hover:text-gray-700 mt-2"
         >
           {isExpanded ? "Read Less" : "Read More"}
         </button>

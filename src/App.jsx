@@ -128,7 +128,7 @@ const App = () => {
           onClick={() => setTheme("light")}
           className={`p-2 rounded-full ${
             theme === "light"
-              ? "bg-blue-500 text-white"
+              ? "bg-gray-400 text-white"
               : "bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
           }`}
           aria-label="Light Mode"
@@ -141,7 +141,7 @@ const App = () => {
           onClick={() => setTheme("dark")}
           className={`p-2 rounded-full ${
             theme === "dark"
-              ? "bg-blue-500 text-white"
+              ? "bg-blue-300 text-white"
               : "bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
           }`}
           aria-label="Dark Mode"
@@ -154,7 +154,7 @@ const App = () => {
           onClick={() => setTheme("system")}
           className={`p-2 rounded-full ${
             theme === "system"
-              ? "bg-blue-500 text-white"
+              ? "bg-orange-300 text-white"
               : "bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
           }`}
           aria-label="System Mode"
@@ -165,7 +165,7 @@ const App = () => {
         </div>
         <div className="mb-6">
           <textarea
-            className="w-full bg-gray-200 text-sm p-4 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-600 dark:text-gray-200"
+            className="w-full bg-gray-100 text-sm p-4 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-600 dark:text-gray-200"
             placeholder="Write your note here..."
             rows={4}
             value={input}
@@ -181,7 +181,10 @@ const App = () => {
           {loading ? (editMode ? "Saving..." : "Adding...") : editMode ? "Save Edit" : "Add Note"}
         </button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"> */}
+        <div className="container mx-auto max-w-6xl">
+          <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-3">
           {notes.map((note) => (
             <motion.div
               key={note._id}
@@ -198,6 +201,7 @@ const App = () => {
             </motion.div>
           ))}
         </div>
+      </div>
       </div>
     </div>
   );
