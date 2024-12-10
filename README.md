@@ -1,12 +1,12 @@
 # 📝 Notes App
 
-A simple, interactive, and visually appealing notes application built with **React**, **Express.js**, **MongoDB**, and **Tailwind CSS**. This app supports adding, editing, deleting, and viewing notes with dark mode, dynamic themes, and Framer Motion animations.
+A simple, interactive, and visually appealing notes application built with **React**, **Express.js**, **MongoDB**, **Tailwind CSS** and **Framer Motion** for animation. This app supports adding, editing, deleting, and viewing notes with dark mode, light mode and dynamic themes.
 
 ---
 
 ## 🖼 Preview
 
-#### Dekstop View
+#### Desktop View
 ![Desktop View](https://raw.githubusercontent.com/hendrahend/notes-app/refs/heads/main/assets/screenshot1.png)
 #### Mobile View
 ![Mobile View](https://raw.githubusercontent.com/hendrahend/notes-app/refs/heads/main/assets/screenshot2.png)
